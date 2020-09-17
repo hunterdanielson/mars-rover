@@ -1,44 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mars Rovers Coding Challenge
 
-## Available Scripts
+The problem statement
+```
+NASA intends to land robotic rovers on Mars to explore a particularly curious-looking plateau. The rovers must navigate this rectangular plateau in a way so that their on board cameras can get a complete image of the surrounding terrain to send back to Earth. A simple two-dimensional coordinate grid is mapped to the plateau to aid in rover navigation. Each point on the grid is represented by a pair of numbers X Y which correspond to the number of points East or North, respectively, from the origin. The origin of the grid is represented by 0 0 which corresponds to the southwest corner of the plateau. 0 1 is the point directly north of 0 0, 1 1 is the point immediately east of 0 1, etc. A rover’s current position and heading are represented by a triple X Y Z consisting of its current grid position X Y plus a letter Zcorresponding to one of the four cardinal compass points, N E S W. For example, 0 0 N indicates that the rover is in the very southwest corner of the plateau, facing north.NASA remotely controls rovers via instructions consisting of strings of letters. Possible instruction letters are L, R, and M. L and R instruct the rover to turn 90 degrees left or right, respectively (without moving from its current spot), while M instructs the rover to move forward one grid point along its current heading.Your task is write an application that takes the test input (instructions from NASA) and provides the expected output (the feedback from the rovers to NASA).  Each rover will move in series, i.e. the next rover will not start moving until the one preceding it finishes. 
+```
 
-In the project directory, you can run:
+My design was to create a function that has at least three parameters, all parameters are strings, and in order would be: 
 
-### `npm start`
+- grid size
+- rover 1 initial position 
+- rover 1 instructions
+  
+Then it could take in more rover positions and instructions and would continue in the sequence:
+- rover 2 initial position
+- rover 2 instructions
+- rover 3 intial position
+- rover 3 instructions
+- ....
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I assumed that should a rover try to move outside its grid zone, for example if its position is 00S and the instruction is M or grid size is 5x5 and rover position is 55N and instruction is M, then the rover simply would not move and continue to the next command, almost like it was running into a wall
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+I also assumed that a grid size, rover position, and rover instructions would all be given correctly, meaning as strings and proper formating/capitalization for the respective parameter
 
-### `npm test`
+Another assumption made is that the output is a series of strings in an array
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application should run with a simple **npm install**, and I wrote tests for the main functionality which can be run with **npm test**
